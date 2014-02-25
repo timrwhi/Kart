@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<div id="wrapper">
+		<div class="row">
+			<div id="total-p1" class="points total-points">Toad<br><span>96</span></div>
+			<div id="total-p2" class="points total-points">Yoshi<br><span>84</span></div>
+		</div>
+		<form id="add-new-gp" class="row">
+			<select name="cupName" id="cup-name">
+				<option value="Mushroom Cup">Mushroom Cup</option>
+				<option value="Flower Cup">Flower Cup</option>
+				<option value="Star Cup">Star Cup</option>
+				<option value="Special Cup">Special Cup</option>
+			</select>
+			<input type="number" name="p1Score" placeholder="Toad Score" min="0" max="36">
+			<input type="number" name="p2Score" placeholder="Yoshi Score" min="0" max="36">
+			<input type="submit" name="submit" value="Save" class="button button-row">
+		</form>
+		<ul class="recent-cups row">
+			<li class="cup-info">
+				<img class="cup-name" src="http://www.dummyimage.com/70x70"/>
+				<div class="points win">36</div>
+				<div class="points">24</div>
+				<button class="button-row">&times;</button>
+			</li>
+			<li class="cup-info">
+				<img class="cup-name" src="http://www.dummyimage.com/70x70"/>
+				<div class="points">24</div>
+				<div class="points win">36</div>
+				<button class="button-row">&times;</button>
+			</li>
+			<li class="cup-info">
+				<img class="cup-name" src="http://www.dummyimage.com/70x70"/>
+				<div class="points win">36</div>
+				<div class="points">24</div>
+				<button class="button-row">&times;</button>
+			</li>
+		</ul>
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="main.js"></script>
+</body>
+</html>

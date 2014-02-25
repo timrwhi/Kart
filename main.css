@@ -1,0 +1,119 @@
+
+/* 
+ * BASE
+ * * * * * * * * * * * * */
+
+body {
+	background-color: #eeeeee;
+	font-family: arial, sans-serif;
+}
+#wrapper {
+	max-width: 1000px;
+	padding: 15px;
+	margin: 0 auto;
+	overflow: auto;
+}
+button, .button {
+	padding: 5px 10px;
+	margin: 0;
+	background: none;
+	background-color: #bbb;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 1.2em;
+	text-transform: uppercase;
+}
+input {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+
+/* 
+ * UNIQUES
+ * * * * * * * * * * * * */
+
+.total-points {
+	padding: 20px 0;
+	font-weight: 900;
+	width: 40%;
+	float: left;
+	margin-bottom: 30px;
+}
+.total-points:first-of-type {
+	margin-left: 8%;
+}
+.total-points span {
+	font-size: 2em;
+}
+#add-new-gp {
+	margin: 15px 0;
+}
+#add-new-gp select {
+	width: 70px;
+	max-width: 10%;
+	float: left;
+	margin-right: .3em;
+}
+#add-new-gp input[type="number"] {
+	float: left;
+	line-height: 70px;
+	width: 40%;
+	margin: 0 .3em;
+}
+.recent-cups {
+	padding: 0;
+	margin: 0;
+}
+.recent-cups li {
+	list-style: none;
+	margin: 10px 0;
+	overflow: auto;
+}
+.recent-cups li:first-child {
+	margin-top: 0;
+}
+.cup-name {
+	border-radius: 50%;
+	float: left;
+	margin-right: .3em;
+	max-width: 10%;
+}
+.points {
+	float: left;
+	width: 40%;
+	margin: 0 .3em;
+	text-align: center;
+	background-color: #fff;
+}
+.cup-info .points {
+	line-height: 70px;
+}
+.win {
+	font-weight: bold;
+	color: green;
+	background-color: #E0FFE3;
+}
+.button-row {
+	padding: 0;
+	line-height: 70px;
+	width: 10%;
+	float: right;
+}
+
+
+/* 
+ * UTILITY
+ * * * * * * * * * * * * */
+
+.row:before,
+.row:after {
+    content: " ";
+    display: table;
+}
+
+.row:after {
+    clear: both;
+}
