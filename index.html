@@ -59,14 +59,23 @@
   </li>
   {{/this}}
   </script>
+
   <script id="leaderboard-template" type="text/x-handlebars-template">
     <div class="x-2">
-      <span id="p1-total" class="total box">{{p1.wins}}-{{p2.wins}}-{{ties}} <br> 36s: {{p1.bonus}}</span>
+      <span id="p1-total" class="total box">
+        {{p1.wins}}-{{p2.wins}}-{{ties}} 
+        <br> 
+        36s: {{p1.bonuses}}
+      </span>
     </div>
     <div class="x-2">
-      <span id="p2-total" class="total box">{{p2.wins}}-{{p1.wins}}-{{ties}} <br> 36s: {{p2.bonus}}</span>
+      <span id="p2-total" class="total box">
+        {{p2.wins}}-{{p1.wins}}-{{ties}} 
+        <br> 
+        36s: {{p2.bonuses}}</span>
     </div>
   </script>
+
   <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@ jQuery(function ($) {
     },
     format: function(data){
       var formattedData = [];
-//       var myObj = {};
+      var myObj = {};
 //       $.each(data, function(i, value){
 //         myObj[data[i]]
 //         console.log("baller");
@@ -43,7 +43,6 @@ jQuery(function ($) {
             parseInt(data[i].gp.race2.p2score,10) + 
             parseInt(data[i].gp.race3.p2score,10) + 
             parseInt(data[i].gp.race4.p2score,10);
-        console.log(p1total);
         if (p1total > p2total){
           if (p1total === 36){
             p1 = 3;
@@ -73,33 +72,15 @@ jQuery(function ($) {
       }
       return formattedData;
     }
-//     totals: function(data){
-//       console.log(data);
-//       var p1wins = 0;
-//       var p2wins = 0;
-//       var numties = 0;
-//       for (var i = 0; i < data.length; i++){
-//         if(data[i].p1score !== 0 && data[i].p1score !== "1"){
-//           p1wins++;
-//         }else if (data[i].p1score !== "1"){
-//           p2wins++;
-//         }else{ numties++; }
-//       }
-//       return {
-//               p1: {wins: p1wins, bonus: 10},
-//               p2: {wins: p2wins, bonus: 9},
-//               ties: numties
-//              };
-//     }
   };
 
   var app = {
     init: function(){
       this.rawData = util.store("raw");
-//       this.Totals = util.totals();
       this.cacheElements();
       this.bindEvents();
       this.render();
+      console.log(this.rawData);
     },
     cacheElements: function(){
       this.gpTemplate = Handlebars.compile($("#gp-template").html());
@@ -132,6 +113,41 @@ jQuery(function ($) {
         }
       };
     },
+    totals: function(data){
+      var numWinsP1 = 0;
+      var numWinsP2 = 0;
+      var numTies = 0;
+      var numBonusesP1 = 0;
+      var numBonusesP2 = 0;
+      $.each(data, function(i, value){
+        var p1score = parseInt(data[i].gp.race1.p1score, 10) + 
+                      parseInt(data[i].gp.race2.p1score, 10) +
+                      parseInt(data[i].gp.race3.p1score, 10) +
+                      parseInt(data[i].gp.race4.p1score, 10);
+        var p2score = parseInt(data[i].gp.race1.p2score, 10) + 
+                      parseInt(data[i].gp.race2.p2score, 10) +
+                      parseInt(data[i].gp.race3.p2score, 10) +
+                      parseInt(data[i].gp.race4.p2score, 10);
+        if (p1score > p2score) {
+          numWinsP1++;
+          if (p1score === 36) {
+            numBonusesP1++;
+          }
+        } 
+        else if (p2score > p1score) {
+          numWinsP2++;
+          if (p2score === 36) {
+            numBonusesP2++;
+          }
+        } 
+        else { numTies++ }
+      });
+      return {
+              p1: {wins: numWinsP1, bonuses: numBonusesP1},
+              p2: {wins: numWinsP2, bonuses: numBonusesP2},
+              ties: numTies
+             };
+    },
     addRace: function(e){
       e.preventDefault();
       this.$form = $(e.target).data("submit");
@@ -146,10 +162,11 @@ jQuery(function ($) {
       this.render();
     },
     render: function(){
-      this.$gpList.html(this.gpTemplate(util.format(this.rawData)));
-//       this.$leaderboard.html(this.leaderboardTemplate(this.Totals));
+      var GPs = util.format(this.rawData);
+      var leaderboard = this.totals(this.rawData);
+      this.$gpList.html(this.gpTemplate(GPs));
+      this.$leaderboard.html(this.leaderboardTemplate(leaderboard));
       util.store("raw", this.rawData);
-//       util.totals(this.GPs);
     },
     indexOfId: function(id, arr){
       var len = arr.length;
