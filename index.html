@@ -1,48 +1,77 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="main.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <meta charset="utf-8">
+  <title>Kart 3.0</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-	<div id="wrapper">
-		<div class="row">
-			<div id="total-p1" class="points total-points">Toad<br><span>96</span></div>
-			<div id="total-p2" class="points total-points">Yoshi<br><span>84</span></div>
-		</div>
-		<form id="add-new-gp" class="row">
-			<select name="cupName" id="cup-name">
-				<option value="Mushroom Cup">Mushroom Cup</option>
-				<option value="Flower Cup">Flower Cup</option>
-				<option value="Star Cup">Star Cup</option>
-				<option value="Special Cup">Special Cup</option>
-			</select>
-			<input type="number" name="p1Score" placeholder="Toad Score" min="0" max="36">
-			<input type="number" name="p2Score" placeholder="Yoshi Score" min="0" max="36">
-			<input type="submit" name="submit" value="Save" class="button button-row">
-		</form>
-		<ul class="recent-cups row">
-			<li class="cup-info">
-				<img class="cup-name" src="http://www.dummyimage.com/70x70"/>
-				<div class="points win">36</div>
-				<div class="points">24</div>
-				<button class="button-row">&times;</button>
-			</li>
-			<li class="cup-info">
-				<img class="cup-name" src="http://www.dummyimage.com/70x70"/>
-				<div class="points">24</div>
-				<div class="points win">36</div>
-				<button class="button-row">&times;</button>
-			</li>
-			<li class="cup-info">
-				<img class="cup-name" src="http://www.dummyimage.com/70x70"/>
-				<div class="points win">36</div>
-				<div class="points">24</div>
-				<button class="button-row">&times;</button>
-			</li>
-		</ul>
-	</div>
-
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="main.js"></script>
+  <div id="app" class="wrapper">
+    <header id="header">
+      <div id="leaderboard" class="grid"></div>
+    </header>
+    
+    <section id="main">
+      <form id="gp-add">
+        <select name="gp">
+          <option>grand prix</option>
+          <option value="1">#1 Mushroom Cup</option>
+          <option value="2">#2 Flower Cup</option>
+          <option value="3">#3 Star Cup</option>
+          <option value="4">#4 Special Cup</option>
+        </select>
+        <br>
+        <input type="number" name="p1r1" placeholder="p1r1">
+        <input type="number" name="p2r1" placeholder="p2r1">
+        <br>
+        <input type="number" name="p1r2" placeholder="p1r2">
+        <input type="number" name="p2r2" placeholder="p2r2">
+        <br>
+        <input type="number" name="p1r3" placeholder="p1r3">
+        <input type="number" name="p2r3" placeholder="p2r3">
+        <br>
+        <input type="number" name="p1r4" placeholder="p1r4">
+        <input type="number" name="p2r4" placeholder="p2r4">
+        <br>
+        <button class="add" data-submit="gp-add">add</button>
+      </form>
+      <ul id="gp-list"></ul>
+    </div>
+  </div>
+  
+  <script id="gp-template" type="text/x-handlebars-template">
+  {{#this}}
+  <li data-id="{{id}}">
+    <div class="item">
+      <div class="grid">
+        <div class="x-2">
+          <span id="p1-score" class="{{#if p1score}}winner{{/if}}{{#if bonus}}bonus{{/if}} score box">{{p1score}}</span>
+        </div>
+        <div class="x-2">
+          <span id="p2-score" class="{{#if p2score}}winner{{/if}}{{#if bonus}}bonus{{/if}} score box">{{#if p2score}}{{p2score}}{{else}}--{{/if}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="img">#{{gp}}</div>
+    <button class="delete" data-id="{{id}}">&times;</button>
+  </li>
+  {{/this}}
+  </script>
+  <script id="leaderboard-template" type="text/x-handlebars-template">
+    <div class="x-2">
+      <span id="p1-total" class="total box">{{p1.wins}}-{{p2.wins}}-{{ties}} <br> 36s: {{p1.bonus}}</span>
+    </div>
+    <div class="x-2">
+      <span id="p2-total" class="total box">{{p2.wins}}-{{p1.wins}}-{{ties}} <br> 36s: {{p2.bonus}}</span>
+    </div>
+  </script>
+  <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
+
+
+
+
+
